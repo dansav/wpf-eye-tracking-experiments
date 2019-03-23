@@ -27,7 +27,7 @@ namespace Shazzam.Shaders {
 		public static readonly DependencyProperty Texture2Property = ShaderEffect.RegisterPixelShaderSamplerProperty("Texture2", typeof(CircleRevealTransitionEffect), 1);
 		public CircleRevealTransitionEffect() {
 			PixelShader pixelShader = new PixelShader();
-			pixelShader.UriSource = new Uri("WpfEyeTrackingLab;component/CircleRevealTransitionEffect.ps", UriKind.Relative);
+			pixelShader.UriSource = new Uri($"{nameof(XRayVision)};component/CircleRevealTransitionEffect.ps", UriKind.Relative);
 			this.PixelShader = pixelShader;
 
 			this.UpdateShaderValue(InputProperty);
