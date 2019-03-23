@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
+using Microsoft.Build.Tasks;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
@@ -50,7 +52,7 @@ class Build : NukeBuild
         .ToArray();
 
     Target Default => t => t
-        .DependsOn(Clean, Restore, Compile);
+        .DependsOn(Clean, Restore, Compile, Pack);
 
     Target Clean => t => t
         .Executes(() =>
@@ -65,11 +67,9 @@ class Build : NukeBuild
         {
             foreach (var project in ProjectsToBuild)
             {
-                Logger.Info($"Restoring NuGet for: {project.Path}");
                 NuGetTasks.NuGetRestore(s => s
                     .SetTargetPath(project.Path)
                     .SetPackagesDirectory(RootDirectory / "packages"));
-                Logger.Info($"END");
             }
         });
 
@@ -77,6 +77,8 @@ class Build : NukeBuild
         .After(Restore)
         .Executes(() =>
         {
+            Logger.Normal($"Building version: {GitVersion.SemVer}");
+
             foreach (var project in ProjectsToBuild)
             {
                 MSBuild(s => s
@@ -88,6 +90,31 @@ class Build : NukeBuild
                     .SetInformationalVersion(GitVersion.InformationalVersion)
                     .SetMaxCpuCount(Environment.ProcessorCount)
                     .SetNodeReuse(IsLocalBuild));
+            }
+        });
+
+    Target Pack => t => t
+        .After(Compile)
+        .Executes(() =>
+        {
+            Logger.Info($"Creating {Configuration} packages for version {GitVersion.SemVer}");
+
+            foreach (var project in ProjectsToBuild)
+            {
+                var dir = (AbsolutePath) System.IO.Path.GetDirectoryName(project.Path) / "bin" / Configuration;
+
+                AbsolutePath zipFile;
+                if (Configuration.Debug.Equals(Configuration))
+                {
+                    zipFile = OutputDirectory / $"{project.Name}_{GitVersion.SemVer}_debug.zip";
+                }
+                else
+                {
+                    zipFile = OutputDirectory / $"{project.Name}_{GitVersion.SemVer}.zip";
+                }
+
+                //Nuke.Compression.CompressionTasks.Compress(dir, zipFile);
+                ZipFile.CreateFromDirectory(dir, zipFile);
             }
         });
 }
