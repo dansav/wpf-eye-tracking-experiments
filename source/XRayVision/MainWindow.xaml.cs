@@ -27,7 +27,7 @@ namespace XRayVision
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            _eyetracker = Eyetracker.Desktop;
+            _eyetracker = new Eyetracker();
             _rootElement = GetVisualChild(0) as FrameworkElement;
 
             ImageEffect.Texture2 = new ImageBrush(new BitmapImage(new Uri("./Images/wood.jpg", UriKind.Relative)));

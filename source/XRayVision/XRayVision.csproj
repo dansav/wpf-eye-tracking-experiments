@@ -38,7 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Eyetracking.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eyetracking.NET.2.0.3\lib\net45\Eyetracking.NET.dll</HintPath>
+      <HintPath>..\..\packages\Eyetracking.NET.3.0.0\lib\net35\Eyetracking.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
