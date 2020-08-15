@@ -57,8 +57,7 @@ Task("UpdateVersion").Does(() =>
     });
 });
 
-Task("Build")
-    .Does(() =>
+Task("Build").Does(() =>
 {
         var latestInstallationPath = VSWhereLatest(new VSWhereLatestSettings { Requires = "Microsoft.Component.MSBuild" });
         var msbuildPath = latestInstallationPath.CombineWithFilePath("MSBuild/current/Bin/MSBuild.exe");
@@ -68,11 +67,10 @@ Task("Build")
             Configuration = configuration,
         };
 
-        MSBuild(solution, settings.WithTarget("Rebuild"));
+        MSBuild(solution, settings.WithTarget("Rebuild").WithRestore());
 });
 
-Task("Test")
-    .Does(() =>
+Task("Test").Does(() =>
 {
    NUnit3("./source/**/bin/Release/*.Tests.dll", new NUnit3Settings
    {
