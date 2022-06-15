@@ -16,18 +16,17 @@ pool:
 
 steps:
 - task: DotNetCoreCLI@2
-    displayName: 'Install Cake'
-    inputs:
-      command: 'custom'
-      custom: 'tool'
-      arguments: 'restore'
-
+  displayName: 'Install Cake'
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: 'restore'
 
 - task: DotNetCoreCLI@2
-    displayName: 'Run Cake Build Script'
-    inputs:
-      command: 'custom'
-      custom: 'cake'
+  displayName: 'Run Cake Build Script'
+  inputs:
+    command: 'custom'
+    custom: 'cake'
 
 - task: PublishTestResults@2
   inputs:
