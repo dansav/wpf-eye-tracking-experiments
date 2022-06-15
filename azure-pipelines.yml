@@ -15,10 +15,20 @@ pool:
   vmImage: 'windows-2019'
 
 steps:
-- powershell: ./build.ps1
-  displayName: 'Run Cake Build Script'
-# - publish: $(System.DefaultWorkingDirectory)/output
-#   artifact: Stage
+- task: DotNetCoreCLI@2
+    displayName: 'Install Cake'
+    inputs:
+      command: 'custom'
+      custom: 'tool'
+      arguments: 'restore'
+
+
+- task: DotNetCoreCLI@2
+    displayName: 'Run Cake Build Script'
+    inputs:
+      command: 'custom'
+      custom: 'cake'
+
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest

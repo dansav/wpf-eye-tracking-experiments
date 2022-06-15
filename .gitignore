@@ -16,4 +16,3 @@ _ReSharper*/
 
 output/
 tools/*
-!tools/packages.config

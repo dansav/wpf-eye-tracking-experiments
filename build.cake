@@ -1,5 +1,5 @@
-#tool nuget:?package=GitVersion.CommandLine&version=5.0.0
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.10.0
+#tool nuget:?package=GitVersion.CommandLine&version=5.10.3
+#tool nuget:?package=NUnit.ConsoleRunner&version=3.15.0
 
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
