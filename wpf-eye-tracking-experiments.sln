@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29503.13
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRayVision", "source\XRayVision\XRayVision.csproj", "{A92DB54A-E7FE-47D1-A332-385D241FB420}"
 EndProject
@@ -19,11 +19,12 @@ Global
 		{A92DB54A-E7FE-47D1-A332-385D241FB420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A92DB54A-E7FE-47D1-A332-385D241FB420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A92DB54A-E7FE-47D1-A332-385D241FB420}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F15F610-FD9B-4040-8AB3-C570E1B5A050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F15F610-FD9B-4040-8AB3-C570E1B5A050}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A92DB54A-E7FE-47D1-A332-385D241FB420} = {48E5C21F-94FD-471C-861E-F3969D75B4FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CCD9E6A-8603-491D-AAC7-BF3D2A456387}
